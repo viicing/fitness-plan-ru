@@ -1,7 +1,11 @@
+import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CheckCircle2, Heart, Zap, Calendar, BookOpen } from "lucide-react";
+import ProgressTracker from "@/components/ProgressTracker";
+import WorkoutTimer from "@/components/WorkoutTimer";
+import ExerciseVideos from "@/components/ExerciseVideos";
 
 /**
  * Design Philosophy: Wellness Minimalism
@@ -47,7 +51,7 @@ export default function Home() {
             </div>
             <div className="relative h-96 md:h-full">
               <img
-                src="https://private-us-east-1.manuscdn.com/sessionFile/B4zhsoeewe9Gnne9emaZrq/sandbox/B4YBkgP3WBnnQzJLToavk9-img-1_1770812762000_na1fn_aGVyby1maXRuZXNzLXdvbWFu.png?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvQjR6aHNvZWV3ZTlHbm5lOWVtYVpycS9zYW5kYm94L0I0WUJrZ1AzV0JublF6SkxUb2F2azktaW1nLTFfMTc3MDgxMjc2MjAwMF9uYTFmbl9hR1Z5YnkxbWFYUnVaWE56TFhkdmJXRnUucG5nP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=ucdky9dH075l4yJhJW7bk8296xcjLbUNoW3kZdknkWitpo9M84KmccTXqo4YOBswwEDImEHKAzZHKqciDJiy3ZktZ-ou75i5Sl770x38lETuUhERqUHPGTfOAHsxTVw16O~WD6kSdHmrOd60UcAwzYezHn0XAKdLdRiwAJIaH6U0cTuJn6GoS4X8QfvD3O7wblm6Nz5crmw5gr6ZUCKIBL1Sgd6kPVH0aBLzLcwGQSuZzhHu5NuzVVsGsdc1dKwlv-X0JKgTrtgER3JVnvQugbZoyGMS1vLYdLGRoeIUhFefns2Qml9eenYOB1Prv0LePOAZnuuWau0qVXGupfukcQ__"
+                src="https://private-us-east-1.manuscdn.com/sessionFile/B4zhsoeewe9Gnne9emaZrq/sandbox/H9IjmnHl4zEPaAY6p9nV23-img-1_1770815226000_na1fn_aGVyby1maXRuZXNzLXdvbWFu.png?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvQjR6aHNvZWV3ZTlHbm5lOWVtYVpycS9zYW5kYm94L0g5SWptbkhsNHpFUGFBWTZwOW5WMjMtaW1nLTFfMTc3MDgxNTIyNjAwMF9uYTFmbl9hR1Z5YnkxbWFYUnVaWE56TFhkdmJXRnUucG5nP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=fvauidwZc9oQh-OfZ-SP7kgVDqxSoCywFGTvpPfR8O~RvjGjqaHuQS7GO1ciiduh4KtVPtLxwIOIIoQNI7pMI6SUdB-bsnmgXpajlMjIhZ5p4aFoGBU~6cQHI5zE7IKi08ld4jXa6jV6BPoyLl01uG627xuHo5qLewjweTdIzLGqI3W7Fv5ufADGpQbB5UBL5TKZuB6~DN6Paz0aQT2mYdchQrWk6L3KbQ8Cwyyjcfuwxs8wezP0ijwRPlAUTSBXbjc1jjrtIR7tTZ-mxkeKi3QVAa9sEuBjAVoONKM1Po2NqQx9U6~aA3CBI7OYJr3Y8YrfC0yTd4n-LqLzKpKI8g__"
                 alt="Woman doing neck stretch at home"
                 className="w-full h-full object-cover rounded-2xl shadow-lg"
               />
@@ -392,6 +396,36 @@ export default function Home() {
           <Button className="bg-primary hover:bg-primary/90 text-white text-lg px-8 py-6">
             Начать Первую Тренировку на Этой Неделе
           </Button>
+        </div>
+      </section>
+
+      {/* Workout Timer Section */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary">
+            Интерактивный Таймер Тренировки
+          </h2>
+          <WorkoutTimer />
+        </div>
+      </section>
+
+      {/* Exercise Videos Section */}
+      <section className="py-16 md:py-24 bg-background">
+        <div className="container">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary">
+            Видео-Демонстрации Упражнений
+          </h2>
+          <ExerciseVideos />
+        </div>
+      </section>
+
+      {/* Progress Tracker Section */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary">
+            Отслеживание Прогресса
+          </h2>
+          <ProgressTracker />
         </div>
       </section>
 
